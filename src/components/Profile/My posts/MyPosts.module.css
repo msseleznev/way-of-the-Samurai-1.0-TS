@@ -1,0 +1,10 @@
+.content {    
+    grid-area: myPosts;   
+    display: grid;
+    grid-template-rows: 1fr auto;  
+    background-color: rgb(96, 99, 92);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 10px;
+    
+}

@@ -1,0 +1,17 @@
+.app-wrapper {
+  display: grid;
+  grid-gap: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  grid-template-columns: 1fr minmax(110px, 180px) minmax(300px, 600px) 1fr;
+  grid-template-rows: 50px 1fr 50px;
+  align-items: start;
+  grid-template-areas:
+    "header header header header"
+    ". navbar content ."
+
+  /* "footer footer footer footer"; */
+
+}
+.content {
+  grid-area: content;
+}

@@ -1,0 +1,16 @@
+.box {
+    padding: 5px;
+}
+.item {
+    display: grid;
+    background-color: rgb(160, 161, 159);
+    border-radius: 5px;
+    padding: 5px;
+
+    
+}
+.item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+}

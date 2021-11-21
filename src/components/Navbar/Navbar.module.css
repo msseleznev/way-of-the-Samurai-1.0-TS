@@ -1,0 +1,32 @@
+.nav {
+    grid-area: navbar;
+    background-color: rgb(154, 151, 163);
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    padding: 20px; 
+    height: minmax(100px, auto);  
+       
+}
+.item a {
+    color: white;
+    text-decoration: none;
+    }
+.item a.active {
+    color: rgb(243, 191, 191);;
+}
+.item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;   
+    
+}
+.friends {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 40px); 
+    grid-gap: 5px;
+    
+
+    
+    
+
+}

@@ -1,0 +1,13 @@
+.content {
+    grid-area: profileInfo;
+    background-color: rgb(240, 243, 237);
+    height: 200px;   
+    border-radius: 5px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    
+}
+.content img {  
+    border-radius: 5px;  
+    height: 100%;
+    width: 100%;
+}
