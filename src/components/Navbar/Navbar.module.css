@@ -4,7 +4,7 @@
     border-radius: 5px;
     box-shadow: 0 0 5px rgba(0,0,0,0.5);
     padding: 20px; 
-    height: minmax(100px, auto);  
+    height: minmax(100px, auto);
        
 }
 .item a {
@@ -12,7 +12,7 @@
     text-decoration: none;
     }
 .item a.active {
-    color: rgb(243, 191, 191);;
+    color: rgb(243, 191, 191);
 }
 .item img {
     width: 40px;

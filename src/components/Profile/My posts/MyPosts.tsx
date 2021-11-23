@@ -1,10 +1,14 @@
 import React from 'react';
 import c from './MyPosts.module.css';
 import {Posts} from "./Posts/Posts";
+import {PostsType, ProfilePageType} from "../../../redux/state";
 
 
-export const MyPosts = () => {
-
+export const MyPosts = (props: ProfilePageType) => {
+    let postsElement = props.posts.map(p => <Posts message={p.message}
+                                                   likesCount={p.likesCount}
+                                                   avatar={p.avatar}
+                                                   id={p.id}/>)
     return <div className={c.content}>
         <div>
             <h3>My posts </h3>
@@ -14,9 +18,7 @@ export const MyPosts = () => {
                     <button>Add post</button>
                 </div>
             </div>
-                <Posts message='Hi' likeCounts={150}/>
-                <Posts message='WTF?' likeCounts={200}/>
-
+            {postsElement}
         </div>
     </div>;
 }

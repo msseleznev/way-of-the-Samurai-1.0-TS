@@ -1,19 +1,17 @@
 import React from 'react';
 import c from './Posts.module.css';
+import {PostsType} from "../../../../redux/state";
 
 
-type propsMyPosts = {
-    message: string
-    likeCounts: number
-}
-export const Posts: React.FC<propsMyPosts> = (props) => {
+
+export const Posts = (props: PostsType) => {
 
     return (
         <div className={c.box}>
             <div className={c.item}>
-                <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'/>
+                <img src= {props.avatar}/>
                 {props.message}
-                <span> Like {props.likeCounts} </span>
+                <span> Like {props.likesCount} </span>
             </div>
         </div>
 
