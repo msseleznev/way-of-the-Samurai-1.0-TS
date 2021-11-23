@@ -11,6 +11,7 @@ const DialogsItem = (props: DialogsType) => {
             <img src={props.avatar}/>
             <NavLink to={path} className={(d) => d.isActive ? c.active : ""}>{props.name} </NavLink>
         </div>
+
     )
 }
 const Message = (props: MessagesType) => {
