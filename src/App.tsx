@@ -10,9 +10,9 @@ import {Music} from "./components/Navbar/Music/Music";
 import {Settings} from "./components/Navbar/Settings/Settings";
 import {RootStateType} from "./redux/state";
 
-type AppPropsType = RootStateType & {addNewPost: (post: string) => void}
+/*type AppPropsType = RootStateType & {addNewPost: (post: string) => void}*/
 
-const App = (props: AppPropsType) => {
+const App = (props: RootStateType) => {
 
     return (
         <BrowserRouter>
@@ -21,9 +21,10 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='content'>
                     <Routes>
-                        <Route path='/profile/*' element={<Profile posts = {props.profilePage.posts} />}/>
-                        <Route path='/dialogs/*' element={<Dialogs dialogs = {props.dialogsPage.dialogs}
-                                                                   messages ={props.dialogsPage.messages}
+                        <Route path='/profile/*' element={<Profile posts={props.profilePage.posts}
+                                                                   messageFotNewPost={props.profilePage.messageFotNewPost}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs dialogs={props.dialogsPage.dialogs}
+                                                                   messages={props.dialogsPage.messages}
                         />}/>
                         <Route path='/news/*' element={<News/>}/>
                         <Route path='/music/*' element={<Music/>}/>

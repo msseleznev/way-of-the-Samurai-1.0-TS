@@ -1,5 +1,12 @@
 import {v1} from "uuid";
-import {renderTree} from "../render";
+
+
+let rerender = () => {
+
+}
+export const subscribe = (callback: () => void) => {
+    rerender = callback;
+}
 
 export type PostsType = {
     id: string
@@ -17,6 +24,7 @@ export type MessagesType = {
     message: string
 }
 export type ProfilePageType = {
+    messageFotNewPost: string
     posts: Array<PostsType>
 }
 export type DialogsPageType = {
@@ -27,9 +35,9 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-
 let state: RootStateType = {
     profilePage: {
+        messageFotNewPost: '',
         posts: [            //хардкодим массив постов, в будущем этот массив будет подгружаться извне
             {
                 id: v1(),
@@ -53,9 +61,17 @@ let state: RootStateType = {
     },
     dialogsPage: {
         dialogs: [         //хардкодим массив имен пользователей, в будущем этот массив будет подгружаться извне
-            {id: v1(), name: 'Sveta', avatar: 'https://www.meme-arsenal.com/memes/91a4d47ddf47ab28e507d7bb72a59b5c.jpg'},
+            {
+                id: v1(),
+                name: 'Sveta',
+                avatar: 'https://www.meme-arsenal.com/memes/91a4d47ddf47ab28e507d7bb72a59b5c.jpg'
+            },
             {id: v1(), name: 'Maks', avatar: 'https://www.meme-arsenal.com/memes/0f8248f0809b1231a56fa7a18c24796f.jpg'},
-            {id: v1(), name: 'Sanya', avatar: 'https://www.meme-arsenal.com/memes/d811974672c0a99a3b356476056bb0b5.jpg'},
+            {
+                id: v1(),
+                name: 'Sanya',
+                avatar: 'https://www.meme-arsenal.com/memes/d811974672c0a99a3b356476056bb0b5.jpg'
+            },
             {
                 id: v1(),
                 name: 'Anjelika',
@@ -79,7 +95,11 @@ export const addNewPost = (postText: string) => {
         avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
     }
     state.profilePage.posts.push(newPost)
-    renderTree(state)
+    rerender()
+}
+export const changeNewTest = (newText: string) => {
+    state.profilePage.messageFotNewPost = newText;
+    rerender();
 }
 
 

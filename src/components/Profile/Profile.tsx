@@ -11,7 +11,9 @@ export const Profile = (props: ProfilePageType) => {
     return (
         <div className={c.profile}>
             <ProfileInfo/>
-            <MyPosts posts={props.posts} />
+            <MyPosts messageFotNewPost={props.messageFotNewPost}
+
+                     posts={props.posts}/>
         </div>
     )
 }
