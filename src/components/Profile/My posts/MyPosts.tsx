@@ -1,11 +1,16 @@
 import React, {ChangeEvent} from 'react';
 import c from './MyPosts.module.css';
 import {Posts} from "./Posts/Posts";
-import  {addNewPost, changeNewTest, ProfilePageType} from "../../../redux/state";
+import {ActionType, addNewPostAC, changeNewTextAC, PostsType} from "../../../redux/state";
 
+type MyPostsPropsType = {
+    posts: Array<PostsType>
+    messageFotNewPost: string
+    dispatch: (action: ActionType) => void
 
+}
 
-export const MyPosts = (props: ProfilePageType) => {
+export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
     let postsElement = props.posts.map(p => <Posts key={p.id}
                                                    message={p.message}
                                                    likesCount={p.likesCount}
@@ -13,15 +18,21 @@ export const MyPosts = (props: ProfilePageType) => {
                                                    id={p.id}/>)
 
 
-
     const addPost = () => {
-        addNewPost(props.messageFotNewPost)
-        changeNewTest('')
 
+        //props.addNewPostCallback(props.messageFotNewPost)
+        //props.changeNewTextCallback('')
+        //props.dispatch({type: "ADD-POST", postText: props.messageFotNewPost})
+        //props.dispatch({type: "CHANGE-NEW-TEXT", newText: ''})
+        props.dispatch(addNewPostAC(props.messageFotNewPost))
+        props.dispatch(changeNewTextAC(''))
     }
 
     const changeTextPost = (e: ChangeEvent<HTMLInputElement>) => {
-        changeNewTest(e.currentTarget.value)
+
+        //props.changeNewTextCallback(e.currentTarget.value)
+        //props.dispatch({type: "CHANGE-NEW-TEXT", newText: e.currentTarget.value})
+        props.dispatch(changeNewTextAC(e.currentTarget.value))
     }
 
     return <div className={c.content}>
