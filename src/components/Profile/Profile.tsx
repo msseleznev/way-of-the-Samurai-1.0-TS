@@ -14,7 +14,7 @@ export const Profile: React.FC<ProfilePropsType> = (props) => {
     return (
         <div className={c.profile}>
             <ProfileInfo/>
-            <MyPosts messageFotNewPost={props.profilePage.messageFotNewPost}
+            <MyPosts messageForNewPost={props.profilePage.messageForNewPost}
                      posts={props.profilePage.posts} dispatch={props.dispatch}
             />
         </div>

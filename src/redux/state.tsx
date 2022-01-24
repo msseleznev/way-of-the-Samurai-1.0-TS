@@ -16,19 +16,18 @@ export type MessagesType = {
     message: string
 }
 export type ProfilePageType = {
-    messageFotNewPost: string
+    messageForNewPost: string
     posts: Array<PostsType>
 }
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
+    newMessageBody: string
 }
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
 }
-
-
 export type StoreType = {
     _state: RootStateType
     /*changeNewText: (newText: string) => void
@@ -38,8 +37,11 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionType) => void
 }
-
-export type ActionType = ReturnType<typeof addNewPostAC> | ReturnType<typeof changeNewTextAC>
+export type ActionType =
+    ReturnType<typeof addNewPostAC> |
+    ReturnType<typeof changeNewTextAC> |
+    ReturnType<typeof addNewMessageAC> |
+    ReturnType<typeof sendNewMessageAC>
 
 export const addNewPostAC = (postText: string) => {
     return {
@@ -53,12 +55,24 @@ export const changeNewTextAC = (newText: string) => {
         newText: newText
     } as const
 }
+export const addNewMessageAC = (messageText: string) => {
+    return {
+        type: "ADD-MESSAGE",
+        messageText: messageText
+    } as const
+}
+export const sendNewMessageAC = (body: string) => {
+    return {
+        type: "CHANGE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
 
 
 export const store: StoreType = {
     _state: {
         profilePage: {
-            messageFotNewPost: '',
+            messageForNewPost: '',
             posts: [            //хардкодим массив постов, в будущем этот массив будет подгружаться извне
                 {
                     id: v1(),
@@ -108,6 +122,7 @@ export const store: StoreType = {
                     avatar: 'https://www.meme-arsenal.com/memes/493b6ca2dcfdfce6dcbe906f4c23c6d9.jpg'
                 }
             ],
+            newMessageBody: '',
             messages: [        //хардкодим массив сообщений, в будущем этот массив будет подгружаться извне
                 {id: v1(), message: 'Hi!'},
                 {id: v1(), message: 'What your name?'},
@@ -124,7 +139,6 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-
     /*changeNewText(newText: string) {
         this._state.profilePage.messageFotNewPost = newText;
         this._rerender();
@@ -166,7 +180,18 @@ export const store: StoreType = {
                 this._rerender()
                 break;
             case 'CHANGE-NEW-TEXT':
-                this._state.profilePage.messageFotNewPost = action.newText;
+                this._state.profilePage.messageForNewPost = action.newText;
+                this._rerender();
+                break;
+            case "ADD-MESSAGE":
+                const newMessage: MessagesType = {
+                    id: v1(), message: action.messageText
+                }
+                this._state.dialogsPage.messages.push(newMessage)
+                this._rerender()
+                break;
+            case "CHANGE-NEW-MESSAGE-BODY":
+                this._state.dialogsPage.newMessageBody = action.body;
                 this._rerender();
                 break;
         }

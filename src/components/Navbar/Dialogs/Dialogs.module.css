@@ -26,11 +26,24 @@
 
 }
 .messages  {
-    padding: 10px;    
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
     background-color: rgb(8, 184, 184); 
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);   
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    position: relative;
 }
-.message {
-    padding: 10px;
+
+.sendMessage {
+    margin-top: auto;
+    margin-bottom: 5px;
+}
+.sendMessage input {
+    width: 380px;
+    transition: width 0.25s;
+    margin-right: 5px;
+}
+.sendMessage button {
+
 }

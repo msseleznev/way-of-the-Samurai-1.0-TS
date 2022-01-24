@@ -5,7 +5,7 @@ import {ActionType, addNewPostAC, changeNewTextAC, PostsType} from "../../../red
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    messageFotNewPost: string
+    messageForNewPost: string
     dispatch: (action: ActionType) => void
 
 }
@@ -24,7 +24,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         //props.changeNewTextCallback('')
         //props.dispatch({type: "ADD-POST", postText: props.messageFotNewPost})
         //props.dispatch({type: "CHANGE-NEW-TEXT", newText: ''})
-        props.dispatch(addNewPostAC(props.messageFotNewPost))
+        props.dispatch(addNewPostAC(props.messageForNewPost))
         props.dispatch(changeNewTextAC(''))
     }
 
@@ -39,7 +39,7 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
         <div>
             <h3>My posts </h3>
             <div>
-                <input value={props.messageFotNewPost} onChange={changeTextPost}/>
+                <input value={props.messageForNewPost} onChange={changeTextPost}/>
                 <div>
                     <button onClick={addPost}>Add post</button>
                 </div>

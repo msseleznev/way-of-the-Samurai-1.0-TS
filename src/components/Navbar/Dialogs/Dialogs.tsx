@@ -1,39 +1,44 @@
-import React from 'react';
+import React, {ChangeEvent, FC} from 'react';
 import c from './Dialogs.module.css';
-import {NavLink} from "react-router-dom";
-import {DialogsPageType, DialogsType, MessagesType} from "../../../redux/state";
 
+import {ActionType, addNewMessageAC, DialogsPageType, sendNewMessageAC} from "../../../redux/state";
+import {DialogsItem} from "./DialogsItem";
+import {Message} from "./Message";
 
-const DialogsItem = (props: DialogsType) => {
-    let path = '/dialogs/' + props.id
-    return (
-        <div className={c.dialog}>
-            <img src={props.avatar}/>
-            <NavLink to={path} className={(d) => d.isActive ? c.active : ""}>{props.name} </NavLink>
-        </div>
+type DialogsPropsType = {
+    dialogsPage: DialogsPageType
+    dispatch: (action: ActionType) => void
 
-    )
 }
-const Message = (props: MessagesType) => {
-    return (
-        <div>
-            {props.message}
-        </div>
-    )
-}
-export const Dialogs = (props: DialogsPageType) => {
-    let dialogsElement = props.dialogs.map(d =>
+
+export const Dialogs: React.FC<DialogsPropsType> = (props) => {
+    let dialogsElement = props.dialogsPage.dialogs.map(d =>
         <DialogsItem name={d.name} id={d.id} avatar={d.avatar}/>) // Преобразовываем массив имен dialogsData в массив элементов dialogsElement
-    let messagesElement = props.messages.map(m =>
+    let messagesElement = props.dialogsPage.messages.map(m =>
         <Message message={m.message} id={m.id}/>) //Преобразовываем массив сообщений messagesData в массив элементов messagesElement
 
+    const addMessage = () => {
+        props.dispatch(addNewMessageAC(props.dialogsPage.newMessageBody))
+        props.dispatch(sendNewMessageAC(''))
+
+    }
+    const changeTextMessage = (e: ChangeEvent<HTMLInputElement>) => {
+        props.dispatch(sendNewMessageAC(e.currentTarget.value))
+    }
     return (
         < div className={c.dialogs}>
             <div className={c.dialogsItem}>
                 {dialogsElement}
             </div>
             <div className={c.messages}>
-                {messagesElement}
+                <div>
+                    {messagesElement}
+                </div>
+                <div className={c.sendMessage}>
+                    <input value={props.dialogsPage.newMessageBody} onChange={changeTextMessage}/>
+                    <button onClick={addMessage}>Send</button>
+                </div>
+
             </div>
         </div>
     )
