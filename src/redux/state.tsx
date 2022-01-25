@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import profileReducer, {addNewPostAC, changeNewTextAC} from "./profile-reducer";
+import dialogsReducer, {addNewMessageAC, sendNewMessageAC} from "./dialogs-reducer";
 
 export type PostsType = {
     id: string
@@ -42,32 +44,6 @@ export type ActionType =
     ReturnType<typeof changeNewTextAC> |
     ReturnType<typeof addNewMessageAC> |
     ReturnType<typeof sendNewMessageAC>
-
-export const addNewPostAC = (postText: string) => {
-    return {
-        type: "ADD-POST",
-        postText: postText
-    } as const
-}
-export const changeNewTextAC = (newText: string) => {
-    return {
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
-export const addNewMessageAC = (messageText: string) => {
-    return {
-        type: "ADD-MESSAGE",
-        messageText: messageText
-    } as const
-}
-export const sendNewMessageAC = (body: string) => {
-    return {
-        type: "CHANGE-NEW-MESSAGE-BODY",
-        body: body
-    } as const
-}
-
 
 export const store: StoreType = {
     _state: {
@@ -168,7 +144,10 @@ export const store: StoreType = {
              this._rerender();
          }*/
     dispatch(action) {
-        switch (action.type) {
+        this._state.profilePage =  profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage =  dialogsReducer(this._state.dialogsPage, action)
+        this._rerender();
+      /*  switch (action.type) {
             case 'ADD-POST':
                 const newPost: PostsType = {
                     id: v1(),
@@ -194,7 +173,7 @@ export const store: StoreType = {
                 this._state.dialogsPage.newMessageBody = action.body;
                 this._rerender();
                 break;
-        }
+        }*/
     }
 }
 
