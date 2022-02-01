@@ -45,7 +45,7 @@ export type ActionType =
     ReturnType<typeof addNewMessageAC> |
     ReturnType<typeof sendNewMessageAC>
 
-export const store: StoreType = {
+ const store: StoreType = {
     _state: {
         profilePage: {
             messageForNewPost: '',

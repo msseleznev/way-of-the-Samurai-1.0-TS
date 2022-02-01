@@ -1,4 +1,4 @@
-import {ActionType, PostsType, ProfilePageType} from "./state";
+import {ActionType, PostsType, ProfilePageType} from "./store";
 import {v1} from "uuid";
 
 
@@ -15,10 +15,32 @@ export const changeNewTextAC = (newText: string) => {
         newText: newText
     } as const
 }
+let initialState: ProfilePageType = {
+    messageForNewPost: '',
+    posts: [            //хардкодим массив постов, в будущем этот массив будет подгружаться извне
+        {
+            id: v1(),
+            message: 'Hi!',
+            likesCount: 150,
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
+        },
+        {
+            id: v1(),
+            message: 'I\'m from Russia',
+            likesCount: 35,
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
+        },
+        {
+            id: v1(),
+            message: "I'm Russian",
+            likesCount: 235,
+            avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
+        }
+    ]
+}
 
 
-
-const profileReducer =(state: ProfilePageType, action: ActionType) => {
+const profileReducer =(state = initialState, action: ActionType): ProfilePageType => {
     switch (action.type) {
         case 'ADD-POST':
             const newPost: PostsType = {

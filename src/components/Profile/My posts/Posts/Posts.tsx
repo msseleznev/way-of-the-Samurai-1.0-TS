@@ -1,6 +1,6 @@
 import React from 'react';
 import c from './Posts.module.css';
-import {PostsType} from "../../../../redux/state";
+import {PostsType} from "../../../../redux/store";
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
-import  {store} from "./redux/state";
+import {store} from "./redux/redux-store";
 import ReactDOM from "react-dom";
 import App from "./App";
 
@@ -9,7 +9,7 @@ import App from "./App";
 let renderTree = () => {
     ReactDOM.render(
         <React.StrictMode>
-            <App store={store}/>
+            <App store = {store}/>
         </React.StrictMode>,
         document.getElementById('root')
     );
