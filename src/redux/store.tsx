@@ -32,8 +32,8 @@ export type RootStateType = {
 }
 export type StoreType = {
     _state: RootStateType
-    /*changeNewText: (newText: string) => void
-    addNewPost: (newPost: string) => void*/
+    changeNewText: (newText: string) => void
+    addNewPost: (newPost: string) => void
     _rerender: () => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
@@ -45,7 +45,7 @@ export type ActionType =
     ReturnType<typeof addNewMessageAC> |
     ReturnType<typeof sendNewMessageAC>
 
- const store: StoreType = {
+ /*const store: StoreType = {
     _state: {
         profilePage: {
             messageForNewPost: '',
@@ -115,7 +115,7 @@ export type ActionType =
     getState() {
         return this._state
     },
-    /*changeNewText(newText: string) {
+    /!*changeNewText(newText: string) {
         this._state.profilePage.messageFotNewPost = newText;
         this._rerender();
     },
@@ -128,8 +128,8 @@ export type ActionType =
         }
         this._state.profilePage.posts.push(newPost)
         this._rerender()
-    },*/
-    /* dispatch(action) {
+    },*!/
+    /!* dispatch(action) {
          if (action.type === 'ADD-POST') {
              const newPost: PostsType = {
                  id: v1(),
@@ -142,12 +142,12 @@ export type ActionType =
          } else if (action.type === 'CHANGE-NEW-TEXT') {
              this._state.profilePage.messageFotNewPost = action.newText;
              this._rerender();
-         }*/
+         }*!/
     dispatch(action) {
         this._state.profilePage =  profileReducer(this._state.profilePage, action)
         this._state.dialogsPage =  dialogsReducer(this._state.dialogsPage, action)
         this._rerender();
-      /*  switch (action.type) {
+      /!*  switch (action.type) {
             case 'ADD-POST':
                 const newPost: PostsType = {
                     id: v1(),
@@ -173,10 +173,10 @@ export type ActionType =
                 this._state.dialogsPage.newMessageBody = action.body;
                 this._rerender();
                 break;
-        }*/
+        }*!/
     }
 }
-
+*/
 
 
 

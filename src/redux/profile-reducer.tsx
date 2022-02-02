@@ -3,10 +3,9 @@ import {v1} from "uuid";
 
 
 
-export const addNewPostAC = (postText: string) => {
+export const addNewPostAC = () => {
     return {
         type: "ADD-POST",
-        postText: postText
     } as const
 }
 export const changeNewTextAC = (newText: string) => {
@@ -15,8 +14,8 @@ export const changeNewTextAC = (newText: string) => {
         newText: newText
     } as const
 }
-let initialState: ProfilePageType = {
-    messageForNewPost: '',
+const initialState: ProfilePageType = {
+
     posts: [            //хардкодим массив постов, в будущем этот массив будет подгружаться извне
         {
             id: v1(),
@@ -35,25 +34,29 @@ let initialState: ProfilePageType = {
             message: "I'm Russian",
             likesCount: 235,
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
-        }
-    ]
+        },
+
+    ],
+    messageForNewPost: "",
 }
 
 
-const profileReducer =(state = initialState, action: ActionType): ProfilePageType => {
+const profileReducer =(state = initialState, action: ActionType) => {
+
     switch (action.type) {
         case 'ADD-POST':
+            debugger;
             const newPost: PostsType = {
                 id: v1(),
-                message: action.postText,
+                message: state.messageForNewPost,
                 likesCount: 0,
                 avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
             }
-            state.posts.push(newPost)
-            return state;
+
+            return  {...state, posts: [...state.posts, newPost]}
         case 'CHANGE-NEW-TEXT':
-            state.messageForNewPost = action.newText;
-            return state;
+        return {...state, messageForNewPost: action.newText}
+
         default:
             return state;
     }

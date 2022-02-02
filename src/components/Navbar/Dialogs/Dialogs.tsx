@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FC} from 'react';
+import React, {ChangeEvent} from 'react';
 import c from './Dialogs.module.css';
 import {DialogsType, MessagesType} from "../../../redux/store";
 import {DialogsItem} from "./DialogsItem";
@@ -22,6 +22,7 @@ export const Dialogs: React.FC<DialogsPropsType> = (props) => {
         <Message message={m.message} id={m.id}/>) //Преобразовываем массив сообщений messagesData в массив элементов messagesElement
 
     const changeTextMessage = (e: ChangeEvent<HTMLInputElement>) => {
+        debugger;
         const body = e.currentTarget.value
         props.changeTextMessage(body)
     }

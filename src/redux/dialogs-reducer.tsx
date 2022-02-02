@@ -2,13 +2,13 @@ import {ActionType, DialogsPageType, MessagesType} from "./store";
 import {v1} from "uuid";
 
 
-export const addNewMessageAC = (messageText: string) => {
+export const addNewMessageAC = () => {
     return {
-        type: "ADD-MESSAGE",
-        messageText: messageText
+        type: "ADD-MESSAGE"
     } as const
 }
 export const sendNewMessageAC = (body: string) => {
+    debugger;
     return {
         type: "CHANGE-NEW-MESSAGE-BODY",
         body: body
@@ -53,15 +53,19 @@ let initialState: DialogsPageType = {
 
 const dialogsReducer =(state = initialState, action: ActionType): DialogsPageType => {
     switch (action.type) {
-        case "ADD-MESSAGE":
+        case "ADD-MESSAGE": {
             const newMessage: MessagesType = {
-                id: v1(), message: action.messageText
+                id: v1(), message: state.newMessageBody
             }
-            state.messages.push(newMessage)
-            return state;
-        case "CHANGE-NEW-MESSAGE-BODY":
-            state.newMessageBody = action.body;
-            return state;
+             return {...state, messages: [...state.messages, newMessage ]}
+        }
+
+
+        case "CHANGE-NEW-MESSAGE-BODY":{
+            return {...state, newMessageBody: action.body}
+        }
+           /* state.newMessageBody = action.body;
+            return state;*/
         default:
                 return state;
     }

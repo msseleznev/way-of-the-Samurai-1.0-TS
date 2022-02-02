@@ -19,10 +19,9 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                                                    id={p.id}/>)
 
     const changeTextPost = (e: ChangeEvent<HTMLInputElement>) => {
-        const text = e.currentTarget.value
-        props.changeTextPost(text)
+        const newText = e.currentTarget.value
+        props.changeTextPost(newText)
     }
-
 
     return <div className={c.content}>
         <div>
