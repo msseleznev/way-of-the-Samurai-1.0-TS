@@ -11,12 +11,16 @@ type DialogsItemPropsType = {
 
 
 export const DialogsItem: React.FC<DialogsItemPropsType> = (props) => {
-    let path = '/dialogs/' + props.id
+   let path = '/dialogs/' + props.id
+   //let path = `/dialogs/${props.id}`
+
     return (
         <div className={c.dialog}>
-            <img src={props.avatar}/>
+            <img src={props.avatar} alt={props.avatar}/>
             <NavLink to={path} className={(d) => d.isActive ? c.active : ""}>{props.name} </NavLink>
         </div>
 
     )
 }
+
+

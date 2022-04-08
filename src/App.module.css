@@ -1,0 +1,30 @@
+.container {
+    height: 200vh;
+    width: 992px;
+    margin: 0 auto;
+    padding-top: 10px;
+
+
+}
+
+.row {
+    display: flex;
+    justify-content: space-between;
+}
+
+.side_bar {
+    width: 20%;
+    height: 400px;
+    position: sticky;
+    top: 10px;
+
+}
+
+.page_body {
+    width: 80%;
+    margin-left: 10px;
+
+}
+
+
+

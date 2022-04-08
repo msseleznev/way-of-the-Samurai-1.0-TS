@@ -1,0 +1,51 @@
+
+.box {
+
+}
+.box img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-top: auto;
+}
+.item {
+    background: rgba(255, 255, 255, 0.37);
+    border-radius: 10px 10px 10px 0;
+    padding: 10px;
+}
+.corner {
+    width: 15px;
+    height: 15px;
+    background: radial-gradient(circle at 0 0, rgba(0, 0, 0, 0) 15px, rgba(255, 255, 255, 0.37) 0);
+    margin-top: auto;
+}
+.name {
+    font-size: 15px;
+    font-weight: bold;
+    color: rgba(208, 178, 250, 0.8);
+}
+.message {
+    color: rgba(253, 253, 253, 0.71);
+    min-width: 150px;
+    max-width: 300px;
+    word-wrap: break-word;
+}
+.time {
+    color: rgba(187, 250, 184, 0.82);
+    text-align: right;
+    padding: 2px;
+}
+
+.selectedPage{
+    font-weight: bold;
+    cursor: pointer;
+    margin: 2px;
+    font-size: 18px;
+}
+.notSelectPage{
+    cursor: pointer;
+    margin: 2px;
+}
+
+
+
