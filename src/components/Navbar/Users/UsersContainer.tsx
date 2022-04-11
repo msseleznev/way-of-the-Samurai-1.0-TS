@@ -13,6 +13,7 @@ import {
 
 } from "../../../redux/users-reducer";
 import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
+import {compose} from 'redux';
 
 
 type MapStatePropsType = {
@@ -111,12 +112,19 @@ const mapStateToProps = (state: AppStateType): MapStatePropsType => {
 }*/
 
 
-export const UsersContainer =withAuthRedirect (connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
-    {
-        getUsersTC,
-        setToggleIsFetching,
-        setToggleFollowingProgress,
-        followTC,
-        unfollowTC
-    })
-(UsersAPIComponent));
+export const UsersContainer = compose<React.ComponentType>(
+    connect<MapStatePropsType, MapDispatchPropsType, {}, AppStateType>(mapStateToProps,
+        {
+            getUsersTC,
+            setToggleIsFetching,
+            setToggleFollowingProgress,
+            followTC,
+            unfollowTC
+        }),
+    withAuthRedirect,
+)(UsersAPIComponent)
+
+
+
+
+

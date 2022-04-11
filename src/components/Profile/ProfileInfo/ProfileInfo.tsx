@@ -3,6 +3,7 @@ import c from './ProfileInfo.module.css';
 import {UserProfileType} from "../../../redux/types";
 import {Preloader} from "../../../preloader/Preloader";
 import userPhoto from "../../../assets/user.png";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
@@ -22,11 +23,13 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img
                     src={backgroundImg} alt={backgroundImg}/>
             </div>
+
             <div>
                 <div className={c.profileInfo}>
                     {/*<img src={props.profile.photos.large}/>*/}
                     <img src={profileImg} alt={profileImg}/>
                     <h3>{props.profile.fullName}</h3>
+                    <ProfileStatus />
                 </div>
                 <div className={c.about}>
                     <div><b>About me:</b> {props.profile.aboutMe}</div>
