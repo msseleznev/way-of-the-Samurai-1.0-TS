@@ -53,6 +53,7 @@ export type ProfilePage = {
     messageForNewPost: string
     posts: Array<PostType>
     profile: UserProfileType
+    status: string
 
 }
 
@@ -108,6 +109,7 @@ export enum ACTIONS_TYPE {
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     ADD_NEW_POST = 'ADD_NEW_POST',
     CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT',
+    SET_STATUS = 'SET_STATUS',
     //DialogsPage
     ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE',
     SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE',
@@ -138,6 +140,10 @@ type ChangeNewTextType = {
 type SetUserProfile = {
     type: ACTIONS_TYPE.SET_USER_PROFILE
     profile: UserProfileType
+}
+type SetStatus = {
+    type: ACTIONS_TYPE.SET_STATUS
+    status: string
 }
 
 // DialogsPage AC
@@ -194,6 +200,7 @@ export type ReducerType = AddNewPostType
     | SetUserProfile
     | SetAuthUserData
     | ToggleIsFollowingProgressType
+    | SetStatus
 
 export type ThunkDispatch = Dispatch<ReducerType>
 

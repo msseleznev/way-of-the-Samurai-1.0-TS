@@ -18,6 +18,10 @@
     z-index: 1;
 }
 
+.profileInfo h3 {
+    margin: 0;
+}
+
 .profileInfo img {
     border-radius: 30px;
     width: 150px;

@@ -7,17 +7,24 @@ import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoPropsType = {
     profile: UserProfileType
+    status: string
+    updateStatus: (status: string) => void
 
 }
-export const ProfileInfo = (props: ProfileInfoPropsType) => {
-    if (Object.keys(props.profile).length === 0) {
+export const ProfileInfo: React.FC<ProfileInfoPropsType> = (
+    {
+        profile,
+        status,
+        updateStatus
+    }) => {
+    if (Object.keys(profile).length === 0) {
         return <Preloader isFetching={true}/>
     }
 
     const backgroundImg = 'https://images.ctfassets.net/7thvzrs93dvf/wpImage18643/2f45c72db7876d2f40623a8b09a88b17/linkedin-default-background-cover-photo-1.png?w=790&h=196&q=90&fm=png'
-    const profileImg =  props.profile.photos.large !== null ? props.profile.photos.large : userPhoto
+    const profileImg = profile.photos.large !== null ? profile.photos.large : userPhoto
     return (
-        
+
         <div className={c.box}>
             <div>
                 <img
@@ -28,16 +35,17 @@ export const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <div className={c.profileInfo}>
                     {/*<img src={props.profile.photos.large}/>*/}
                     <img src={profileImg} alt={profileImg}/>
-                    <h3>{props.profile.fullName}</h3>
-                    <ProfileStatus />
+                    <h3>{profile.fullName}</h3>
+                    <ProfileStatus status={status}
+                                   updateStatus={updateStatus}/>
                 </div>
                 <div className={c.about}>
-                    <div><b>About me:</b> {props.profile.aboutMe}</div>
+                    <div><b>About me:</b> {profile.aboutMe}</div>
                     <b>Contacts:</b>
-                    <li>{props.profile.contacts.vk}</li>
-                    <li>{props.profile.contacts.github}</li>
-                    <li>{props.profile.contacts.facebook}</li>
-                    <li>{props.profile.contacts.instagram}</li>
+                    <li>{profile.contacts.vk}</li>
+                    <li>{profile.contacts.github}</li>
+                    <li>{profile.contacts.facebook}</li>
+                    <li>{profile.contacts.instagram}</li>
                 </div>
             </div>
 
