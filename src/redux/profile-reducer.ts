@@ -81,7 +81,6 @@ export const getStatusTC = (userId: string | undefined) => {
     return (dispatch: ThunkDispatch) => {
         profileAPI.getStatus(userId)
             .then(data => {
-                debugger
                 dispatch(setStatus(data))
             });
     }
