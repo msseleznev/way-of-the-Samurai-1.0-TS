@@ -8,32 +8,6 @@ import {withAuthRedirect} from "../../../hoc/withAuthRedirect";
 import React from "react";
 
 
-/*export const DialogsContainer = () => {
-
-    return <StoreContext.Consumer>
-            {(store: ReduxStoreType) => {
-                const state = store.getState()
-                const addMessage = () => {
-                    store.dispatch(addNewMessageAC(state.dialogsReducer.newMessageBody))
-                    store.dispatch(sendNewMessageAC(''))
-
-                }
-                const changeTextMessage = (body: string) => {
-                    store.dispatch(sendNewMessageAC(body))
-                }
-
-                return <Dialogs dialogs={state.dialogsReducer.dialogs}
-                                messages={state.dialogsReducer.messages}
-                                newMessageBody={state.dialogsReducer.newMessageBody}
-                                addMessage={addMessage}
-                                changeTextMessage={changeTextMessage}/>
-            }}
-
-        </StoreContext.Consumer>
-
-
-}*/
-
 type MapStatePropsType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>

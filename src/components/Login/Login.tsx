@@ -1,27 +1,37 @@
 import React from 'react';
-import {useSelector} from "react-redux";
+import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {Navigate} from "react-router-dom";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Input} from '../common/FormControls/FormControls';
 import {required} from '../../utils/validators/validators';
+import {loginTC} from "../../redux/auth-reducer";
 
 type FormDataType = {
-    login: string
+    email: string
     password: string
     rememberMe: boolean
 
 }
+type MapStateToPropsType = {
+    isAuth: boolean
+}
+type MapDispatchToPropsType = {
+    loginTC: (login: string, password: string, rememberMe: boolean) => void
+}
+type LoginPropsType = MapStateToPropsType & MapDispatchToPropsType
+
 
 const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder={"Login"}
-                       name={"login"} validate={required} component={Input}/>
+                <Field placeholder={"Email"}
+                       name={"email"} validate={required} component={Input}/>
             </div>
             <div>
-                <Field placeholder={"Password"} name={"password"} validate={required} component={Input}/>
+                <Field placeholder={"Password"} name={"password"} type={"password"} validate={required}
+                       component={Input}/>
             </div>
             <div>
                 <Field type={"checkbox"} name={"rememberMe"} component={"input"}/> remember me
@@ -35,14 +45,16 @@ const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 
-const Login = () => {
+const Login: React.FC<LoginPropsType> = (props) => {
 
     const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
+        props.loginTC(formData.email, formData.password, formData.rememberMe)
+
     }
 
-    const isAuth = useSelector<AppStateType>(state => state.auth.isAuth)
-    if (isAuth) return <Navigate to='/profile'/>
+    if (props.isAuth) {
+        return <Navigate to={"/profile"}/>
+    }
     return (
         <div>
             LOGIN
@@ -51,4 +63,8 @@ const Login = () => {
     );
 };
 
-export default Login;
+
+const mapStateToProps = (state: AppStateType) => ({
+    isAuth: state.auth.isAuth
+})
+export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps, {loginTC})(Login);

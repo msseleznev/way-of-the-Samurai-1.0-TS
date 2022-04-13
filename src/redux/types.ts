@@ -109,7 +109,7 @@ export enum ACTIONS_TYPE {
     SET_STATUS = 'SET_STATUS',
     //DialogsPage
     ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE',
-      //Auth
+    //Auth
     SET_USER_DATA = "SET_USER_DATA",
 }
 
@@ -118,10 +118,11 @@ export type AuthDataType = {
     userId: null | number
     email: null | string
     login: null | string
+    isAuth: boolean
 }
 type  SetAuthUserData = {
     type: ACTIONS_TYPE.SET_USER_DATA
-    data: AuthDataType
+    payload: AuthDataType
 }
 
 

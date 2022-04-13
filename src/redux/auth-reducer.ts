@@ -1,5 +1,6 @@
 import {ACTIONS_TYPE, AuthPageType, ReducerType, ThunkDispatch} from "./types";
 import {authAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 const initialState: AuthPageType = {
     userId: null,
@@ -15,8 +16,7 @@ const authReducer = (state = initialState, action: ReducerType): AuthPageType =>
         case ACTIONS_TYPE.SET_USER_DATA: {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload,
             }
         }
         default:
@@ -25,13 +25,14 @@ const authReducer = (state = initialState, action: ReducerType): AuthPageType =>
 }
 
 
-export const setAuthUserData = (userId: number, email: string, login: string) => {
+export const setAuthUserData = (userId: number | null, email: string | null, login: string | null, isAuth: boolean) => {
     return {
         type: ACTIONS_TYPE.SET_USER_DATA,
-        data: {
+        payload: {
             userId,
             email,
             login,
+            isAuth,
         }
     } as const
 }
@@ -42,11 +43,28 @@ export const authUserTC = () => {
             .then(data => {
                 if (data.resultCode === 0) {
                     let {login, email, id} = data.data
-                    dispatch(setAuthUserData(id, email, login));
+                    dispatch(setAuthUserData(id, email, login, true));
                 }
             });
-
     }
+}
+
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: Dispatch) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(authUserTC() as any)
+            }
+        })
+}
+
+export const logoutTC = () => (dispatch: Dispatch) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(setAuthUserData(null, null, null, false));
+            }
+        });
 }
 
 
