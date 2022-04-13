@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../../redux/redux-store";
 import {UserType} from "../../../redux/types";
 import {Users} from './Users';
-import {Preloader} from "../../../preloader/Preloader";
+import {Preloader} from "../../common/preloader/Preloader";
 import c from "./Users.module.css";
 import {
     followTC,

@@ -1,10 +1,25 @@
-.content {    
-    grid-area: myPosts;   
+.content {
+    grid-area: myPosts;
     display: grid;
-    grid-template-rows: 1fr auto;  
+    grid-template-rows: 1fr auto;
     background-color: rgba(96, 99, 92, 0.22);
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     padding: 10px;
-    
+
 }
+
+.content textarea {
+    background: #ffffff;
+    border: 0;
+    box-sizing: border-box;
+    color: #383838;
+    display: block;
+    font-size: 12pt;
+    margin-bottom: 3px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    resize: none;
+}
+

@@ -1,37 +1,42 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 1fr 4fr; 
+    grid-template-columns: 1fr 4fr;
     grid-gap: 8px;
 }
+
 .dialogsItem {
     padding: 10px;
-    background-color: rgb(123, 226, 226);  
+    background-color: rgb(123, 226, 226);
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);      
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
 }
-.dialogsItem img {    
+
+.dialogsItem img {
     width: 30px;
     height: 30px;
     border-radius: 50%;
 
 }
+
 .dialogsItem .active {
     color: rgb(214, 42, 191);
 }
+
 .dialog a {
-    
+
     text-decoration: none;
     color: rgb(158, 124, 124);
     line-height: 40px;
 
 }
-.messages  {
+
+.messages {
     display: flex;
     flex-direction: column;
     padding: 10px;
-    background-color: rgb(8, 184, 184); 
+    background-color: rgb(8, 184, 184);
     border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
     position: relative;
 }
 
@@ -39,11 +44,21 @@
     margin-top: auto;
     margin-bottom: 5px;
 }
-.sendMessage input {
-    width: 380px;
-    transition: width 0.25s;
-    margin-right: 5px;
+
+.sendMessage textarea {
+    background: #ffffff;
+    border: 0;
+    box-sizing: border-box;
+    color: #383838;
+    display: block;
+    font-size: 10pt;
+    margin-bottom: 3px;
+    outline: none;
+    padding: 10px 15px;
+    width: 100%;
+    resize: none;
 }
+
 .sendMessage button {
 
 }
