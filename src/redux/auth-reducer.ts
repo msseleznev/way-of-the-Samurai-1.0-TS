@@ -1,6 +1,7 @@
 import {ACTIONS_TYPE, AuthPageType, ReducerType, ThunkDispatch} from "./types";
 import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {stopSubmit} from "redux-form";
 
 const initialState: AuthPageType = {
     userId: null,
@@ -54,6 +55,9 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
         .then(response => {
             if (response.data.resultCode === 0) {
                 dispatch(authUserTC() as any)
+            } else {
+                let message = response.data.messages.length > 0 ? response.data.messages[0] : "Some error";
+                dispatch(stopSubmit("login", {_error: message}));
             }
         })
 }
