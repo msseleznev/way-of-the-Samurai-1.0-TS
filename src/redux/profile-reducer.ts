@@ -13,7 +13,6 @@ const initialState: ProfilePage = {
             avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
         },
     ],
-    messageForNewPost: "",
     profile: {} as UserProfileType,
     status: ""
 
@@ -27,13 +26,12 @@ export const profileReducer = (state = initialState, action: ReducerType): Profi
 
             const newPost: PostType = {
                 id: v1(),
-                message: state.messageForNewPost,
+                message: action.newPostText,
                 likesCount: 0,
                 avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTA9s5YmZqV-QmXoSiq9kAjpwfTUkaZPUZfBg&usqp=CAU'
             }
             return {...state, posts: [...state.posts, newPost]}
-        case ACTIONS_TYPE.CHANGE_NEW_TEXT:
-            return {...state, messageForNewPost: action.newText}
+
         case ACTIONS_TYPE.SET_USER_PROFILE:
             return {...state, profile: action.profile}
         case ACTIONS_TYPE.SET_STATUS:
@@ -44,15 +42,10 @@ export const profileReducer = (state = initialState, action: ReducerType): Profi
 }
 
 
-export const addNewPostAC = () => {
+export const addNewPostAC = (newPostText: string) => {
     return {
         type: ACTIONS_TYPE.ADD_NEW_POST,
-    } as const
-}
-export const changeNewTextAC = (newText: string) => {
-    return {
-        type: ACTIONS_TYPE.CHANGE_NEW_TEXT,
-        newText: newText
+        newPostText,
     } as const
 }
 

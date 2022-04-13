@@ -2,8 +2,6 @@ import {ACTIONS_TYPE, DialogsPageType, MessagesType, ReducerType} from "./types"
 import {v1} from "uuid";
 
 
-
-
 let initialState: DialogsPageType = {
     dialogs: [         //хардкодим массив имен пользователей, в будущем этот массив будет подгружаться извне
         {
@@ -32,7 +30,6 @@ let initialState: DialogsPageType = {
             avatar: 'https://www.meme-arsenal.com/memes/493b6ca2dcfdfce6dcbe906f4c23c6d9.jpg'
         }
     ],
-    newMessageBody: '',
     messages: [        //хардкодим массив сообщений, в будущем этот массив будет подгружаться извне
         {id: v1(), message: 'Hi!'},
         {id: v1(), message: 'What your name?'},
@@ -44,27 +41,18 @@ export const dialogsReducer = (state = initialState, action: ReducerType): Dialo
     switch (action.type) {
         case ACTIONS_TYPE.ADD_NEW_MESSAGE: {
             const newMessage: MessagesType = {
-                id: v1(), message: state.newMessageBody
+                id: v1(), message: action.newMessageBody
             }
             return {...state, messages: [...state.messages, newMessage]}
         }
-        case ACTIONS_TYPE.SEND_NEW_MESSAGE: {
-            return {...state, newMessageBody: action.body}
-        }
-
         default:
             return state;
     }
 }
 
-export const addNewMessageAC = () => {
+export const addNewMessageAC = (newMessageBody: string) => {
     return {
-        type: ACTIONS_TYPE.ADD_NEW_MESSAGE
-    }
-}
-export const sendNewMessageAC = (body: string) => {
-    return {
-        type: ACTIONS_TYPE.SEND_NEW_MESSAGE,
-        body: body
+        type: ACTIONS_TYPE.ADD_NEW_MESSAGE,
+        newMessageBody,
     }
 }

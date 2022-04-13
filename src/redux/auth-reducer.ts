@@ -17,7 +17,6 @@ const authReducer = (state = initialState, action: ReducerType): AuthPageType =>
                 ...state,
                 ...action.data,
                 isAuth: true
-
             }
         }
         default:

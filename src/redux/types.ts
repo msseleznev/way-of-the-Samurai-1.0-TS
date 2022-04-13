@@ -13,7 +13,6 @@ export type MessagesType = {
 export type DialogsPageType = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageBody: string
 }
 
 //Profile User
@@ -50,7 +49,6 @@ export type PostType = {
     avatar: string
 }
 export type ProfilePage = {
-    messageForNewPost: string
     posts: Array<PostType>
     profile: UserProfileType
     status: string
@@ -108,12 +106,10 @@ export enum ACTIONS_TYPE {
     //ProfilePage
     SET_USER_PROFILE = 'SET_USER_PROFILE',
     ADD_NEW_POST = 'ADD_NEW_POST',
-    CHANGE_NEW_TEXT = 'CHANGE_NEW_TEXT',
     SET_STATUS = 'SET_STATUS',
     //DialogsPage
     ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE',
-    SEND_NEW_MESSAGE = 'SEND_NEW_MESSAGE',
-    //Auth
+      //Auth
     SET_USER_DATA = "SET_USER_DATA",
 }
 
@@ -132,11 +128,9 @@ type  SetAuthUserData = {
 // ProfilePage AC
 type AddNewPostType = {
     type: ACTIONS_TYPE.ADD_NEW_POST
+    newPostText: string
 }
-type ChangeNewTextType = {
-    type: ACTIONS_TYPE.CHANGE_NEW_TEXT
-    newText: string
-}
+
 type SetUserProfile = {
     type: ACTIONS_TYPE.SET_USER_PROFILE
     profile: UserProfileType
@@ -149,11 +143,9 @@ type SetStatus = {
 // DialogsPage AC
 type AddNewMessageType = {
     type: ACTIONS_TYPE.ADD_NEW_MESSAGE
+    newMessageBody: string
 }
-type SendNewMessageType = {
-    type: ACTIONS_TYPE.SEND_NEW_MESSAGE
-    body: string
-}
+
 // UsersPage AC
 type FollowType = {
     type: ACTIONS_TYPE.FOLLOW
@@ -188,9 +180,7 @@ type ToggleIsFollowingProgressType = {
 
 // Reducers
 export type ReducerType = AddNewPostType
-    | ChangeNewTextType
     | AddNewMessageType
-    | SendNewMessageType
     | FollowType
     | UnfollowType
     | SetUsersType

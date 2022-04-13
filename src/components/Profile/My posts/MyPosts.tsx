@@ -1,14 +1,17 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import c from './MyPosts.module.css';
 import {Posts} from "./Posts/Posts";
 import {PostType} from "../../../redux/types";
+import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 
 type MyPostsPropsType = {
     posts: Array<PostType>
-    messageForNewPost: string
-    addPost: () => void
-    changeTextPost: (text: string) => void
+    addPost: (newPost: string) => void
+
+}
+type AddPostFormType = {
+    newPostText: string
 }
 
 export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
@@ -18,24 +21,27 @@ export const MyPosts: React.FC<MyPostsPropsType> = (props) => {
                                                    avatar={p.avatar}
                                                    id={p.id}/>)
 
-    const changeTextPost = (e: ChangeEvent<HTMLInputElement>) => {
-        const newText = e.currentTarget.value
-        props.changeTextPost(newText)
+    const addNewPost = (value: AddPostFormType) => {
+        props.addPost(value.newPostText)
     }
-
     return <div className={c.content}>
         <div>
             <h3>My posts </h3>
-            <div>
-                <input value={props.messageForNewPost}
-                       onChange={changeTextPost}/>
-                <div>
-                    <button onClick={props.addPost}>
-                        Add post
-                    </button>
-                </div>
-            </div>
+            <AddNewPostFormRedux onSubmit={addNewPost}/>
             {postsElement}
         </div>
     </div>;
 }
+
+const AddNewPostForm: React.FC<InjectedFormProps<AddPostFormType>> = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit}>
+            <Field component='input' name={"newPostText"} placeholder={"Enter your message"}/>
+            <div>
+                <button>Add post</button>
+            </div>
+        </form>
+    )
+}
+
+const AddNewPostFormRedux = reduxForm<AddPostFormType>({form: 'ProfileAddNewPostForm'})(AddNewPostForm)
