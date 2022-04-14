@@ -91,6 +91,9 @@ export type AuthPageType = {
     isFetching: boolean
     isAuth: boolean
 }
+export type AppPageType = {
+    initialized: boolean
+}
 
 //AC
 export enum ACTIONS_TYPE {
@@ -111,6 +114,8 @@ export enum ACTIONS_TYPE {
     ADD_NEW_MESSAGE = 'ADD_NEW_MESSAGE',
     //Auth
     SET_USER_DATA = "SET_USER_DATA",
+    //App
+    INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS"
 }
 
 //Auth AC
@@ -124,14 +129,16 @@ type  SetAuthUserData = {
     type: ACTIONS_TYPE.SET_USER_DATA
     payload: AuthDataType
 }
+// App AC
+type  InitializedSuccess = {
+    type: ACTIONS_TYPE.INITIALIZED_SUCCESS
 
-
+}
 // ProfilePage AC
 type AddNewPostType = {
     type: ACTIONS_TYPE.ADD_NEW_POST
     newPostText: string
 }
-
 type SetUserProfile = {
     type: ACTIONS_TYPE.SET_USER_PROFILE
     profile: UserProfileType
@@ -192,6 +199,7 @@ export type ReducerType = AddNewPostType
     | SetAuthUserData
     | ToggleIsFollowingProgressType
     | SetStatus
+    | InitializedSuccess
 
 export type ThunkDispatch = Dispatch<ReducerType>
 
